@@ -43,18 +43,16 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // GET: Cars/Create
-        public IActionResult Create()
+        // GET: Cars/AddCar
+        public IActionResult AddCar()
         {
             return View();
         }
 
-        // POST: Cars/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Cars/AddCar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
+        public async Task<IActionResult> AddCar([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -65,8 +63,8 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // GET: Cars/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Cars/Modify/1
+        public async Task<IActionResult> Modify(int? id)
         {
             if (id == null)
             {
@@ -81,12 +79,12 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // POST: Cars/Edit/5
+        // POST: Cars/Modify/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
+        public async Task<IActionResult> Modify(int id, [Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
         {
             if (id != car.Id)
             {
@@ -116,8 +114,8 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // GET: Cars/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Cars/Remove/5
+        public async Task<IActionResult> Remove(int? id)
         {
             if (id == null)
             {
@@ -134,10 +132,10 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // POST: Cars/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Cars/Remove/5
+        [HttpPost, ActionName("Remove")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> RemoveConfirmed(int id)
         {
             var car = await _context.CAR.FindAsync(id);
             if (car != null)
