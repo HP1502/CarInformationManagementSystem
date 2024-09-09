@@ -4105,19 +4105,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mahivare\\.nuget\\packages\\": {}
+    "C:\\Users\\harivy\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mahivare\\Videos\\CarManagementSol\\CarManagement\\CarManagement.csproj",
+      "projectUniqueName": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\CarManagement.csproj",
       "projectName": "CarManagement",
-      "projectPath": "C:\\Users\\mahivare\\Videos\\CarManagementSol\\CarManagement\\CarManagement.csproj",
-      "packagesPath": "C:\\Users\\mahivare\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mahivare\\Videos\\CarManagementSol\\CarManagement\\obj\\",
+      "projectPath": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\CarManagement.csproj",
+      "packagesPath": "C:\\Users\\harivy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\mahivare\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\harivy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4179,7 +4184,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
