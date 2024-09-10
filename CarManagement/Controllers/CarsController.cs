@@ -21,14 +21,14 @@ namespace CarManagement.Controllers
         }
 
         // GET: Cars
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View( _context.CAR.ToList());
+            return View(await _context.CAR.ToListAsync());
         }
         private ICarRepository ic = new CarRepository();
 
         //*[HttpGet("SearchCar/{id})"]*/
-        // GET: Cars/CarSummary/5
+        // GET: Cars/SearchCar/5
         public IActionResult SearchCar(CarInformationSystemContext _context,string? model)
         {
             if (model == null)
@@ -48,14 +48,16 @@ namespace CarManagement.Controllers
         {
             return View();
         }
-
+          
         // POST: Cars/AddCar/5
-        [HttpPost]
+/*        [HttpPost("")]*/
         [ValidateAntiForgeryToken]
-        public  IActionResult AddCar([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
+        public  IActionResult AddCar([FromForm] Car car)
         {
             if (ModelState.IsValid)
             {
+                if(_context.CAR.Any(c => c.Model == car.Model))
+                    TempData["Error"] = "Model must be unique";
                 bool res=ic.AddCar(_context,car);
                 if (res)
                 {
@@ -63,7 +65,9 @@ namespace CarManagement.Controllers
                 }
                 else
                 {
-                    return StatusCode(500);
+                    TempData["Error"] = "Model must be unique";
+                    //return StatusCode(500, "Model must be unique");
+                    return RedirectToAction(nameof(Index));
                 }
                 /*await _context.SaveChangesAsync();*/
                 /*return RedirectToAction(nameof(Index));*/
@@ -72,14 +76,14 @@ namespace CarManagement.Controllers
         }
 
         // GET: Cars/Modify/1
-        public IActionResult Modify(string? Model )
+        public async Task<IActionResult> Modify(string? Model )
         {
             if (Model== null)
             {
                 return NotFound();
             }
 
-            var car =  _context.CAR.Find(Model);
+            var car = await _context.CAR.FindAsync(Model);
             if (car == null)
             {
                 return NotFound();
@@ -89,7 +93,7 @@ namespace CarManagement.Controllers
         // POST: Cars/Modify/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Modify([FromBody] Car updatedCar, [FromQuery] string model)
+        public  IActionResult ModifyCar([FromBody] Car updatedCar, [FromQuery] string model)
         {
             var res=ic.ModifyCar(_context, updatedCar, model);
             if (res)
@@ -103,7 +107,8 @@ namespace CarManagement.Controllers
 
 
 
-        // GET: Cars/Remove
+        // GET: Cars/Remove/5
+        [HttpGet("Remove")]
         public IActionResult Remove(string? model)
         {
             if (model == null)
@@ -121,10 +126,10 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // POST: Cars/Remove/{model}
-        [HttpPost, ActionName("Remove")]
+        // POST: Cars/Remove/1
+        [HttpPost("Removed")]
         [ValidateAntiForgeryToken]
-        public IActionResult RemoveConfirmed(string model)
+        public IActionResult Removed    (string model)
         {
             var res = ic.RemoveCar(_context, model);
             if (res)
@@ -151,3 +156,4 @@ namespace CarManagement.Controllers
         }
     }
 }
+
