@@ -7,12 +7,68 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CarManagement.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Navbar styles */
+        .navbar {
+            /*background: #712cf9;*/
+            background: #00ccff;
+            height: 70px;
+        }
+
+        .navbar-brand i, .navbar-light .navbar-brand {
+            color: #fff;
+            margin-left: 25px;
+        }
+
+        .navbar-light .navbar-brand:hover {
+            color: #fff;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #fff;
+            transition: .2s linear;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+             color: #fff !important;
+        }
+
+        .navbar-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar-actions a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .navbar-actions a.login:hover {
+            background-color: white;
+            border-color: white;
+                    color: #E4FFFF;
+        }
+
+        .navbar-actions a.register:hover {
+            background-color: white;
+            border-color: white;
+            color: #E4FFFF;
+        }
+
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarManagement</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-car"></i> CIMS
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,31 +76,37 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="View">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="View">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
+                            <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="ShowSearchForm">Search</a>
+                            <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="ShowSearchForm">Search</a>
                         </li>
                     </ul>
                 </div>
+
+                <div class="navbar-actions d-none d-sm-flex">
+                    <a href="#" class="login">Login</a>
+                    <a href="#" class="register">Register</a>
+                </div>
+
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 bg-light-custom">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - CarManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - CIMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
