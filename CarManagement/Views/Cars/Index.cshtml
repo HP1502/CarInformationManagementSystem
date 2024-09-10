@@ -6,6 +6,13 @@
 
 <h1>Index</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <p>
     <a asp-action="AddCar">Create New</a>
 </p>
@@ -52,50 +59,51 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManufacturerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Engine)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BHP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransmissionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mileage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AirBagDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BootSpace)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="Modify" asp-route-id="@item.Model">Modify</a> 
-                <a asp-action="SearchCar" asp-route-id="@item.Model">Details</a> |
-                <a asp-action="Remove" asp-route-id="@item.Model">Remove</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufacturerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Engine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BHP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransmissionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mileage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirBagDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BootSpace)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Modify" asp-controller="Cars" asp-route-model="@item.Model">Modify</a>
+                    <a asp-action="Details" asp-route-model="@item.Model">Details</a> |
+                    <a asp-action="Remove" asp-route-model="@item.Model">Remove</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
