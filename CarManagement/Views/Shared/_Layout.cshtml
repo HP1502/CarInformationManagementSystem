@@ -51,13 +51,13 @@
         .navbar-actions a.login:hover {
             background-color: white;
             border-color: white;
-                    color: #E4FFFF;
+            color: #00ccff;
         }
 
         .navbar-actions a.register:hover {
             background-color: white;
             border-color: white;
-            color: #E4FFFF;
+            color: #00ccff;
         }
 
     </style>
@@ -91,8 +91,8 @@
                 </div>
 
                 <div class="navbar-actions d-none d-sm-flex">
-                    <a href="#" class="login">Login</a>
-                    <a href="#" class="register">Register</a>
+                    <a class="login" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="register" asp-area="" asp-controller="Account" asp-action="SignUp">Register</a>
                 </div>
 
             </div>
@@ -106,7 +106,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - CIMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - CIMS
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

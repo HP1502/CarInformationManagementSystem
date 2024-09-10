@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5DXzJ/iBCtFwfo3DGrwZd0IHcHkXfhsTsCX+NJM7U9o=",
+  "Hash": "X9E7F2CLquObaoUDggd4Q6dW2qHhz2l51Y8jDvahpp4=",
   "Source": "CarManagement",
   "BasePath": "_content/CarManagement",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\wwwroot\\Images\\CarImage.gif",
+      "SourceId": "CarManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\wwwroot\\",
+      "BasePath": "_content/CarManagement",
+      "RelativePath": "Images/CarImage.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\CarImage.gif"
     },
     {
       "Identity": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\wwwroot\\Images\\Logo.png",

@@ -24,108 +24,89 @@ namespace CarManagement.Controllers
         {
             return View(await _context.CAR.ToListAsync());
         }
+        private ICarRepository ic = new CarRepository();
 
-        // GET: Cars/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //*[HttpGet("SearchCar/{id})"]*/
+        // GET: Cars/CarSummary/5
+        public IActionResult SearchCar(CarInformationSystemContext _context,string? model)
         {
-            if (id == null)
+            if (model == null)
             {
                 return NotFound();
             }
-
-            var car = await _context.CAR
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (car == null)
+            var res = ic.SearchCar(_context, model);
+            if (res != null)
             {
-                return NotFound();
+                return View(res);
             }
-
-            return View(car);
+            return NotFound();
         }
 
-        // GET: Cars/Create
-        public IActionResult Create()
+        // GET: Cars/AddCar
+        public IActionResult AddCar()
         {
             return View();
         }
 
-        // POST: Cars/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Cars/AddCar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
+        public  IActionResult AddCar([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(car);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                bool res=ic.AddCar(_context,car);
+                if (res)
+                {
+                    return View(car);
+                }
+                /*await _context.SaveChangesAsync();*/
+                /*return RedirectToAction(nameof(Index));*/
             }
-            return View(car);
+            return NotFound();
         }
 
-        // GET: Cars/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Cars/Modify/1
+        public async Task<IActionResult> Modify(string? Model )
         {
-            if (id == null)
+            if (Model== null)
             {
                 return NotFound();
             }
 
-            var car = await _context.CAR.FindAsync(id);
+            var car = await _context.CAR.FindAsync(Model);
             if (car == null)
             {
                 return NotFound();
             }
             return View(car);
         }
-
-        // POST: Cars/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
+        // POST: Cars/Modify/5
+        [HttpPut("Modify")]
+        public  IActionResult ModifyCar([FromBody] Car updatedCar, [FromQuery] string model)
         {
-            if (id != car.Id)
+            var res=ic.ModifyCar(_context, updatedCar, model);
+            if (res)
             {
-                return NotFound();
+                return Ok(new { message = "Car updated successfully" });
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(car);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CarExists(car.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(car);
+            return StatusCode(500, new { message = "Error updating car" });
+   
         }
 
-        // GET: Cars/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+
+        // GET: Cars/Remove/5
+        public async Task<IActionResult> Remove(string? model)
         {
-            if (id == null)
+            if (model == null)
             {
                 return NotFound();
             }
 
             var car = await _context.CAR
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Model == model);
             if (car == null)
             {
                 return NotFound();
@@ -134,24 +115,33 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // POST: Cars/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Cars/Remove/5
+        [HttpPost, ActionName("Remove")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult RemoveConfirmed(string model)
         {
-            var car = await _context.CAR.FindAsync(id);
-            if (car != null)
+            var res = ic.RemoveCar(_context, model);
+            if (res)
             {
-                _context.CAR.Remove(car);
+                return Ok();
             }
+            return NotFound();
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
         }
 
         private bool CarExists(int id)
         {
             return _context.CAR.Any(e => e.Id == id);
+        }
+        //GET: Cars/GetCarsWithDetails
+        public IActionResult GetCarsWithDetails(string manufacturer_name)
+        {
+            var res=ic.GetCarsWithDetails(_context, manufacturer_name);
+            if(res.Count()==0 || res == null){
+                return NotFound();
+            }
+            return Ok(res);
         }
     }
 }
