@@ -26,8 +26,22 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "remove",
+    pattern: "{controller=Cars}/{action=Remove}/{model}");
+
+app.MapControllerRoute(
+    name: "modify",
+    pattern: "{controller=Cars}/{action=Modify}/{model?}");
+app.MapControllerRoute(
+    name: "details",
+    pattern: "{controller=Cars}/{action=Details}/{model?}");
+
 
 app.Run();
