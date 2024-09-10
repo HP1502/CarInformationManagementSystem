@@ -21,6 +21,23 @@ namespace CarManagement.Models
 
             return car;
         }
+        public Car GetDetails(CarInformationSystemContext context, string? model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var car = context.CAR
+                .FirstOrDefault(m => m.Model == model);
+            if (car == null)
+            {
+                return null;
+            }
+
+            return car;
+        }
+
 
         public bool AddCar(CarInformationSystemContext context, Car car)
         {
@@ -51,7 +68,17 @@ namespace CarManagement.Models
                 return false;
             }
             var car = context.CAR.First(c => c.Model == model);
-            car = updatedCar;
+            car.ManufacturerId=updatedCar.ManufacturerId;
+            car.TypeId=updatedCar.TypeId;   
+            car.Seat=updatedCar.Seat;
+            car.Price=updatedCar.Price;
+            car.BHP=updatedCar.BHP;
+            car.BootSpace=updatedCar.BootSpace;
+            car.Mileage=updatedCar.Mileage; 
+            car.AirBagDetails=updatedCar.AirBagDetails;
+            car.Engine=updatedCar.Engine;
+            car.TransmissionId=updatedCar.TransmissionId;
+
             context.SaveChanges();
             return true;
         }
