@@ -21,97 +21,97 @@ namespace CarManagement.Controllers
         }
 
         // GET: Cars
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.CAR.ToListAsync());
+            return View( _context.CAR.ToList());
         }
         private ICarRepository ic = new CarRepository();
 
-        //*[HttpGet("SearchCar/{id})"]*/
-        // GET: Cars/SearchCar/5
-        public IActionResult SearchCar(CarInformationSystemContext _context,string? model)
+
+        // GET: Cars/Details/{model}
+        public IActionResult Details(string? model)
         {
             if (model == null)
             {
                 return NotFound();
             }
-            var res = ic.SearchCar(_context, model);
-            if (res != null)
-            {
-                return View(res);
-            }
-            return NotFound();
-        }
 
+            var car = _context.CAR.FirstOrDefault(m => m.Model == model);
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return View(car);
+        }
         // GET: Cars/AddCar/1
         public IActionResult AddCar()
         {
             return View();
         }
-          
+
         // POST: Cars/AddCar/5
-/*        [HttpPost("")]*/
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult AddCar([FromForm] Car car)
+        public  IActionResult AddCar([Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
         {
             if (ModelState.IsValid)
             {
-                if(_context.CAR.Any(c => c.Model == car.Model))
-                    TempData["Error"] = "Model must be unique";
                 bool res=ic.AddCar(_context,car);
                 if (res)
                 {
+                    TempData["SuccessMessage"] = "Car created successfully!";
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    TempData["Error"] = "Model must be unique";
-                    //return StatusCode(500, "Model must be unique");
-                    return RedirectToAction(nameof(Index));
+                    return StatusCode(500);
                 }
                 /*await _context.SaveChangesAsync();*/
                 /*return RedirectToAction(nameof(Index));*/
             }
-            return NotFound();
+            TempData["SuccessMessage"] = "Car creation unsuccessful check the model name it must be unique";
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Cars/Modify/1
-        public async Task<IActionResult> Modify(string? Model )
+        // GET: Cars/Modify/{model}
+        public IActionResult Modify(string model)
         {
-            if (Model== null)
+            if (string.IsNullOrEmpty(model))
             {
-                return NotFound();
+                return StatusCode(500, "no");
             }
 
-            var car = await _context.CAR.FindAsync(Model);
+            var car = _context.CAR
+                .FirstOrDefault(m => m.Model == model);
             if (car == null)
             {
                 return NotFound();
             }
+
             return View(car);
         }
-        // POST: Cars/Modify/5
-        [HttpPost]
+
+        // POST: Cars/Modify
+        [HttpPost,ActionName("Modify")]
         [ValidateAntiForgeryToken]
-        public  IActionResult ModifyCar([FromBody] Car updatedCar, [FromQuery] string model)
+        public IActionResult Modified([FromForm] Car updatedCar, string model)
         {
-            var res=ic.ModifyCar(_context, updatedCar, model);
+            var res = ic.ModifyCar(_context, updatedCar, model);
             if (res)
             {
+                TempData["SuccessMessage"] = "Car modified successfully!";
                 return RedirectToAction(nameof(Index));
             }
 
             return StatusCode(500, new { message = "Error updating car" });
-   
         }
 
 
-
-        // GET: Cars/Remove/5
-        [HttpGet("Remove")]
-        public IActionResult Remove(string? model)
+        // GET: Cars/Remove/{model}
+        public IActionResult Remove(string model)
         {
-            if (model == null)
+            if (string.IsNullOrEmpty(model))
             {
                 return NotFound();
             }
@@ -126,20 +126,21 @@ namespace CarManagement.Controllers
             return View(car);
         }
 
-        // POST: Cars/Remove/1
-        [HttpPost("Removed")]
+        // POST: Cars/Remove
+        [HttpPost, ActionName("Remove")]
         [ValidateAntiForgeryToken]
-        public IActionResult Removed    (string model)
+        public IActionResult RemoveConfirmed(string model)
         {
             var res = ic.RemoveCar(_context, model);
             if (res)
             {
+                TempData["SuccessMessage"] = "Car removed successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return NotFound();
-
-
         }
+
+
 
         private bool CarExists(int id)
         {
@@ -156,4 +157,3 @@ namespace CarManagement.Controllers
         }
     }
 }
-
