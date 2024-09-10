@@ -11,6 +11,7 @@ namespace CarManagement.Models
 
         [Required]
         [StringLength(100)]
+        [Model]
         public string Model { get; set; }
 
         [Required]

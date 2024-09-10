@@ -7852,23 +7852,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\harivy\\.nuget\\packages\\": {},
+    "C:\\Users\\jpalaniv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\CarManagement.csproj",
+      "projectUniqueName": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
       "projectName": "CarManagement",
-      "projectPath": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\CarManagement.csproj",
-      "packagesPath": "C:\\Users\\harivy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\harivy\\Music\\CarInformationManagementSystemSolution\\CarManagement\\obj\\",
+      "projectPath": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
+      "packagesPath": "C:\\Users\\jpalaniv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\harivy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jpalaniv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

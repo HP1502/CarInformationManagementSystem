@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarManagement.Models
 {
-    public class CarRepository
+    public class CarRepository : ICarRepository
     {
         public Car SearchCar(CarInformationSystemContext context, string? model)
         {
@@ -24,7 +24,7 @@ namespace CarManagement.Models
 
         public bool AddCar(CarInformationSystemContext context, Car car)
         {
-            if (context.CAR.Any(c => c.Id == car.Id))
+            if (context.CAR.Any(c => c.Model == car.Model))
             {
                 return false;
             }
@@ -39,7 +39,7 @@ namespace CarManagement.Models
             {
                 return false;
             }
-            context.CAR.Remove(context.CAR.First(c => c.Id == id));
+            context.CAR.Remove(context.CAR.First(c => c.Model == model));
             context.SaveChanges();
             return true;
         }
@@ -73,14 +73,14 @@ namespace CarManagement.Models
 
             public int bhp { get; set; }
         }
-        public List<CarView> GetCarsWithDetails(CarInformationSystemContext context, string manufacturerName, string carType)
+        public IEnumerable<object> GetCarsWithDetails(CarInformationSystemContext context, string manufacturerName)
         {
             // Fetch cars with eager loading for related data
             var result = context.CAR.Join(
             context.Manufacturer,                            // Inner collection
             car => car.ManufacturerId,                        // Key selector from the Car (outer) table
             manufacturer => manufacturer.Id,                  // Key selector from the Manufacturer (inner) table
-            (car, manufacturer) => new CarView                       // Result selector, projecting the output
+            (car, manufacturer) => new                       // Result selector, projecting the output
             {
                 ModelName = car.Model,
                 ManufacturerName = manufacturer.Name,
@@ -95,4 +95,5 @@ namespace CarManagement.Models
 
             return result;
         }
+    }
 }
