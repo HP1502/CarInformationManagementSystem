@@ -1,4 +1,4 @@
-﻿using CarManagement.Models;
+using CarManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarManagement.Controllers
