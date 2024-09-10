@@ -79,9 +79,8 @@
         </dd>
     </dl>
     
-    <form asp-action="Remove" method="post">
-        @Html.AntiForgeryToken()
-        <input type="hidden" name="model" value="@Model.Model" />
+    <form asp-action="RemoveConfirmed">
+        <input type="hidden" asp-for="Model" />
         <input type="submit" value="Remove" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
