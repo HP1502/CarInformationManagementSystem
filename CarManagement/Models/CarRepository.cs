@@ -24,7 +24,7 @@ namespace CarManagement.Models
 
         public bool AddCar(CarInformationSystemContext context, Car car)
         {
-            if (context.CAR.Any(c => c.Id == car.Id))
+            if (context.CAR.Any(c => c.Model == car.Model))
             {
                 return false;
             }

@@ -7852,19 +7852,37 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\mahivare\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\jpalaniv\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 8819ef5fd17546f69d2e788bb2ae7c614d48514b
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
       "projectName": "CarManagement",
       "projectPath": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
       "packagesPath": "C:\\Users\\mahivare\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mahivare\\Videos\\CarInformationManagementSystem\\CarManagement\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
+      "projectName": "CarManagement",
+      "projectPath": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\CarManagement.csproj",
+      "packagesPath": "C:\\Users\\jpalaniv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jpalaniv\\Music\\CarInformationManagementSystem\\CarManagement\\obj\\",
+>>>>>>> 8819ef5fd17546f69d2e788bb2ae7c614d48514b
       "projectStyle": "PackageReference",
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\mahivare\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\jpalaniv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 8819ef5fd17546f69d2e788bb2ae7c614d48514b
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
