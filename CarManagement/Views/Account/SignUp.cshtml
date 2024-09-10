@@ -1,28 +1,118 @@
-﻿@model CarManagement.Models.User
+@model CarManagement.Models.User
 
 @{
     ViewBag.Title = "Sign Up";
 }
 
-<h2>Sign Up</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
 
-@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username)
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Username)
+        body {
+            background: linear-gradient(-45deg, #2E3192, #1BFFFF);
+        }
+
+        .login-page {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .login-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 2px 3px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .login-form h2 {
+                margin-bottom: 20px;
+            }
+
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+
+        .form-control {
+            width: 18em;
+            max-width: 30em;
+            padding: 7px;
+            border: 1px solid #00ccff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .stylebutton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background-color: #00ccff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+            .btn-primary:hover {
+                transform: scale(1.05);
+                background-color: #00ccff;
+            }
+
+        .text-danger {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-form">
+            <h2>Sign Up</h2>
+            @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "JohnDoe" })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Pass123" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword, new { @class = "form-label" })
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Pass123" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+                <div class="stylebutton">
+                    <button type="submit" class="btn btn-primary">SIGN UP</button>
+                </div>
+            }
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password)
-        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Password)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.ConfirmPassword)
-        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ConfirmPassword)
-    </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-}
+</body>
+</html>
