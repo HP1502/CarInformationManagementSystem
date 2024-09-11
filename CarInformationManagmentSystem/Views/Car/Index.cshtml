@@ -57,17 +57,11 @@
                     <th>Manufacturer</th>
                     <th>Type</th>
                     <th>Transmission</th>
-                    <th>Engine</th>
-                    <th>BHP</th>
-                    <th>Mileage</th>
-                    <th>Seat</th>
-                    <th>AirBag Details</th>
-                    <th>Boot Space</th>
-                    <th>Price</th>
                     @if (User.Identity.IsAuthenticated && userRole == "Admin")
                     {
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Details</th>
                     }
                 </tr>
             </thead>
@@ -81,13 +75,6 @@
                             <td class="text-center">@car.Manufacturer.Name</td>
                             <td class="text-center">@car.Type.Type</td>
                             <td class="text-center">@car.Transmission.Name</td>
-                            <td class="text-center">@car.Engine</td>
-                            <td class="text-center">@car.BHP</td>
-                            <td class="text-center">@car.Mileage</td>
-                            <td class="text-center">@car.Seat</td>
-                            <td class="text-center">@car.AirBagDetails</td>
-                            <td class="text-center">@car.BootSpace</td>
-                            <td class="text-center">@car.Price.ToString("C")</td>
                             @if (User.Identity.IsAuthenticated&& userRole == "Admin")
                             {
                                 <td class="text-center">
@@ -100,6 +87,10 @@
                                     @Html.AntiForgeryToken()
                                     </form>
                                 </td>
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-controller="Car" asp-route-id="@car.Model" class="btn btn-primary">Details</a>
+                                </td>
+                                
  
                             }
                         </tr>

@@ -1,7 +1,7 @@
 ﻿@model CarInformationManagmentSystem.Models.Entities.Car
 
 @{
-    ViewData["Title"] = "Edit Car";
+    ViewData["Title"] = "Create";
 }
 
 @section Styles {
@@ -9,9 +9,9 @@
 }
 
 <div class="edit-car-container">
-    <h2>Edit Car</h2>
+    <h2>Create Car</h2>
 
-    <form asp-action="Update" method="post" class="edit-car-form">
+    <form asp-action="Create" method="post" class="edit-car-form">
         <input type="hidden" asp-for="Id" /> <!-- Hidden field for car ID -->
 
         <div class="form-group">
@@ -35,7 +35,7 @@
                 <option value="">-- Select Car Type --</option>
                 @foreach (var type in ViewBag.CarTypes as IEnumerable<CarInformationManagmentSystem.Models.Entities.CarType>)
                 {
-                    <option value="@type.Id" >@type.Type</option>
+                    <option value="@type.Id">@type.Type</option>
                 }
             </select>
             <span asp-validation-for="TypeId" class="text-danger"></span>

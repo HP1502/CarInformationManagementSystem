@@ -64,5 +64,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Index}/{id?}"); // Default route pattern
 
+app.MapControllerRoute(
+    name: "car",
+    pattern: "{controller=Car}/{action=Index}/{model?}");
+
 // Run the application.
 app.Run();
