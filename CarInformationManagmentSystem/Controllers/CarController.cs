@@ -5,26 +5,32 @@ using CarInformationManagmentSystem.Models.Entities;
 using CarInformationManagmentSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using CarInformationManagmentSystem.Data;
+using System.Drawing.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace CarInformationManagmentSystem.Controllers
-{
+/*namespace CarInformationManagmentSystem.Controllers
+{*/
     public class CarController : Controller
     {
         private readonly IManufacturerRepository _manufacturerRepository;
         private readonly ICarTypeRepository _carTypeRepository;
         private readonly ICarTransmissionTypeRepository _carTransmissionTypeRepository;
         private readonly ICarRepository _carRepository;
+        private readonly Context _context;
 
+       
         public CarController(
             IManufacturerRepository manufacturerRepository,
             ICarTypeRepository carTypeRepository,
             ICarTransmissionTypeRepository carTransmissionTypeRepository,
-            ICarRepository carRepository)
+            ICarRepository carRepository, Context context)
         {
             _manufacturerRepository = manufacturerRepository;
             _carTypeRepository = carTypeRepository;
             _carTransmissionTypeRepository = carTransmissionTypeRepository;
             _carRepository = carRepository;
+            _context = context;
         }
 
         // GET: Car/Create
@@ -111,41 +117,60 @@ namespace CarInformationManagmentSystem.Controllers
             return View(cars);
         }
 
-        // GET: Car/Settings/{model}
-        [HttpGet("Car/Settings/{model}")]
-        public async Task<IActionResult> Settings(string model)
+        // GET: Car/Edit
+        public async Task<IActionResult> Edit(int? id)
         {
-            var car = await _carRepository.GetByModelAsync(model);
-            if (car == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            // Populate ViewBag for dropdown lists
-            ViewBag.Manufacturers = await _manufacturerRepository.GetAllAsync();
-            ViewBag.CarTypes = await _carTypeRepository.GetAllAsync();
-            ViewBag.Transmissions = await _carTransmissionTypeRepository.GetAllAsync();
-
+            var car = await _context.Cars.FindAsync(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "Id", "ContactPerson", car.ManufacturerId);
+            ViewData["TransmissionId"] = new SelectList(_context.CarTransmissionTypes, "Id", "Name", car.TransmissionId);
+            ViewData["TypeId"] = new SelectList(_context.CarTypes, "Id", "Type", car.TypeId);
             return View(car);
         }
-
-        [HttpPost("Car/Settings/{model}")]
+        //POST: Cars/Edit
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Settings(Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Model,ManufacturerId,TypeId,Engine,BHP,TransmissionId,Mileage,Seat,AirBagDetails,BootSpace,Price")] Car car)
         {
-            
-
-            if (ModelState.IsValid)
+            if (id != car.Id)
             {
-                await _carRepository.UpdateAsync(car);
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
-            // Repopulate ViewBag for dropdown lists in case of validation errors
-            ViewBag.Manufacturers = await _manufacturerRepository.GetAllAsync();
-            ViewBag.CarTypes = await _carTypeRepository.GetAllAsync();
-            ViewBag.Transmissions = await _carTransmissionTypeRepository.GetAllAsync();
 
+
+                try
+                {
+                    _context.Update(car);
+                    await _context.SaveChangesAsync();
+                    
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CarExists(car.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                    return RedirectToAction(nameof(Index));
+                    }
+                
+               
+            }
+
+
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "Id", "ContactPerson", car.ManufacturerId);
+            ViewData["TransmissionId"] = new SelectList(_context.CarTransmissionTypes, "Id", "Name", car.TransmissionId);
+            ViewData["TypeId"] = new SelectList(_context.CarTypes, "Id", "Type", car.TypeId);
             return View(car);
         }
 
@@ -166,5 +191,11 @@ namespace CarInformationManagmentSystem.Controllers
 
             return View(car);
         }
+        private bool CarExists(int id)
+        {
+            return _context.Cars.Any(e => e.Id == id);
+        }
     }
-}
+    
+
+
