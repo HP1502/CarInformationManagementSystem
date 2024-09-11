@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using CarInformationManagmentSystem.Models.Entities;
 using CarInformationManagmentSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 public class CarController : Controller
 {
@@ -54,6 +55,23 @@ public class CarController : Controller
         ViewBag.CarTypes = await _carTypeRepository.GetAllAsync();
         ViewBag.Transmissions = await _carTransmissionTypeRepository.GetAllAsync();
         return View(car);
+    }
+
+    [Authorize(Policy = "AdminOnly")]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(string model)
+    {
+        var success = await _carRepository.DeleteAsync(model);
+        if (!success)
+        {
+            // Handle the case where deletion failed, either because the car was not found or due to another issue.
+            TempData["Error"] = $"Car with model '{model}' could not be found or deleted.";
+            return RedirectToAction("Index");
+        }
+
+        TempData["Success"] = $"Car with model '{model}' has been successfully deleted.";
+        return RedirectToAction("Index");
     }
 
     // Index action for listing and filtering cars
