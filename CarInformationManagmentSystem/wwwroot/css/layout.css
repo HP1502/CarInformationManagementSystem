@@ -1,0 +1,703 @@
+﻿/* General Body Styles */
+body {
+    background-color: #36383f;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://your-image-url.jpg'); /* Replace with actual image URL */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+}
+
+/* Homepage Styles */
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure the container covers the full viewport height */
+    text-align: center;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.home-content {
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #20232a;
+    height: 50px;
+    padding: 0 70px;
+    border-bottom: 1px solid #444;
+}
+
+.navbar-brand {
+    color: #61dafb;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 0 15px;
+}
+
+    .navbar-brand:hover {
+        color: #ffffff;
+    }
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+    .navbar-nav .nav-link {
+        color: #61dafb;
+        font-weight: bold;
+        padding: 0 15px;
+        margin: auto; /* Remove margin from individual nav links */
+    }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff !important;
+            background-color: rgba(97, 218, 251, 0.1);
+            border-radius: 5px;
+        }
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+}
+
+    .navbar-actions a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 10px 15px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        margin: 5px; /* Add margin to match button spacing */
+    }
+
+        .navbar-actions a.active {
+            background-color: #ffffff;
+            color: #007bff;
+            border-color: #007bff;
+        }
+
+        .navbar-actions a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+/* Login Page Styles */
+.login-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 1 rem 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.login-header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+    .login-header h4 {
+        margin: 0;
+    }
+
+.login-form {
+    padding: 2rem;
+}
+
+    .login-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .login-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        box-shadow: none;
+        font-size: 1rem;
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: #007bff;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+/* Sign Up Page Styles */
+.signup-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.signup-header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+    .signup-header h4 {
+        margin: 0;
+    }
+
+.signup-form {
+    padding: 2rem;
+}
+
+    .signup-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .signup-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+
+    .signup-form input {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        box-shadow: none;
+        font-size: 1rem;
+    }
+
+    .signup-form button {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: #007bff;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .signup-form button:hover {
+            background-color: #0056b3;
+        }
+
+/* Styles for Settings Page */
+/* Styling for the settings page */
+.settings-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settings-page h2 {
+    margin-bottom: 20px;
+    color: #333; /* Dark text for better readability */
+}
+
+.settings-page .form-group {
+    margin-bottom: 15px;
+}
+
+.settings-page label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.settings-page .form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+}
+
+.settings-page .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+    .settings-page .btn {
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px;
+        display: flex;
+        justify-content: center; /* Center the button horizontally */
+
+}
+
+.settings-page .btn-primary {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.settings-page .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.settings-page .btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.settings-page .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+
+
+/* layout.css */
+
+/* Content Wrapper */
+.content-wrapper {
+    padding: 20px;
+    background-color: #36383f;
+     /* Light background color for the main content area */
+}
+
+/* Page Title */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; /* Darker color for better readability */
+}
+
+/* Table Container */
+.table-container {
+    background-color: #fff; /* White background for the table */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+    .data-table thead {
+        background-color: #007bff; /* Blue background for the header */
+        color: #fff; /* White text color for the header */
+    }
+
+    .data-table th, .data-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd; /* Light border for table rows */
+    }
+
+    .data-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Alternate row colors */
+    }
+
+    .data-table tbody tr:hover {
+        background-color: #e9ecef; /* Light hover effect */
+    }
+
+    .data-table .text-center {
+        text-align: center;
+        padding: 20px;
+        color: #666; /* Gray color for no data message */
+    }
+
+/* Horizontal Filter Form */
+.filter-form-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px; /* Add space between the form and the table */
+}
+
+    /* Form Control Styles */
+    .filter-form-horizontal .form-control {
+        flex: 1;
+        min-width: 150px; /* Minimum width for form elements */
+        height: 38px; /* Height of the input boxes */
+        padding: 6px 12px; /* Adjust padding to align with height */
+        box-sizing: border-box; /* Ensure padding and border are included in the height */
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        font-size: 1rem;
+    }
+
+        /* Center Placeholder Text */
+        .filter-form-horizontal .form-control::placeholder {
+            text-align: center; /* Center the placeholder text */
+        }
+
+    /* Ensure the submit button is aligned correctly */
+    .filter-form-horizontal button {
+        align-self: center;
+        margin-left: 10px; /* Add space between the last form element and the button */
+        height: 38px; /* Match the height of input elements */
+        padding: 0 15px; /* Adjust padding for consistent button size */
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .filter-form-horizontal button:hover {
+            background-color: #0056b3;
+        }
+
+ /* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+/* Table Header */
+.data-table thead {
+    background-color: #007bff; /* Blue background for the header */
+    color: #fff; /* White text color for the header */
+}
+
+/* Table Header Cells */
+.data-table th {
+    padding: 12px;
+    text-align: center; /* Center header text */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table Body Cells */
+.data-table td {
+    padding: 12px;
+    text-align: center; /* Center cell text */
+    border-bottom: 1px solid #ddd; /* Light border for table rows */
+}
+
+/* Alternating Row Colors */
+.data-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row colors */
+}
+
+/* Hover Effect */
+.data-table tbody tr:hover {
+    background-color: #e9ecef; /* Light hover effect */
+}
+
+/* No Data Message */
+.data-table .text-center {
+    text-align: center;
+    padding: 20px;
+    color: #666; /* Gray color for no data message */
+}
+
+/* Filtering Form Styles */
+.filter-form-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between elements */
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+    .filter-form-horizontal .filter-input,
+    .filter-form-horizontal .filter-select {
+        height: 38px; /* Match height to the button */
+        text-align: center; /* Center text in input */
+    }
+
+    .filter-form-horizontal .filter-input {
+        max-width: 200px; /* Limit the width for consistency */
+    }
+
+    .filter-form-horizontal .filter-select {
+        max-width: 180px; /* Limit the width for consistency */
+    }
+
+/* Table Alignment */
+.data-table td,
+.data-table th {
+    text-align: center; /* Center align table content */
+}
+
+/* Buttons Wrapper */
+/* Button Wrapper Styles */
+.button-wrapper {
+    display: flex;
+    justify-content: space-evenly; /* Evenly distribute buttons */
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+    .button-wrapper .btn {
+        flex: 1; /* Space between buttons */
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 16px;
+        display: inline-block;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .button-wrapper .btn-success {
+        background-color: #28a745; /* Green background */
+        border: 1px solid #28a745;
+    }
+
+        .button-wrapper .btn-success:hover {
+            background-color: #218838; /* Darker green on hover */
+            border-color: #1e7e34;
+        }
+
+/* Ensure that the buttons have the same height as the table */
+.table-container {
+    margin-bottom: 20px;
+}
+
+
+
+
+/* Settings Page Form Styles */
+.settings-page-form .form-group {
+    margin-bottom: 15px;
+}
+
+.settings-page-form .form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+    .settings-page-form .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    }
+
+.settings-page-form .btn {
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.settings-page-form .btn-primary {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: white;
+}
+
+    .settings-page-form .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+.settings-page-form .btn-secondary {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    color: white;
+}
+
+    .settings-page-form .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+.container.mt-4.settings-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .container.mt-4.settings-page h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+
+/* Car Transmission Type Form Styles */
+.car-transmission-form {
+    max-width: 800px; /* Match the width of the Create Car form */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .car-transmission-form h2 {
+        margin-bottom: 20px;
+        color: #333; /* Dark text for better readability */
+    }
+
+    .car-transmission-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .car-transmission-form label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .car-transmission-form .form-control {
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+        .car-transmission-form .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+    .car-transmission-form .btn {
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .car-transmission-form .btn-primary {
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        color: white;
+    }
+
+        .car-transmission-form .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .car-transmission-form .btn-secondary {
+        background-color: #6c757d;
+        border: 1px solid #6c757d;
+        color: white;
+    }
+
+        .car-transmission-form .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+/* Create Car Type Form Container Styles */
+.create-car-type-container {
+    max-width: 800px; /* Set max-width for consistency */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    /* Heading Styles */
+    .create-car-type-container h2 {
+        font-size: 36px; /* Make heading larger */
+        color: #333; /* Dark text for better readability */
+        margin-bottom: 20px;
+        text-align: left; /* Align heading to the left */
+    }
+
+/* Form Styles */
+.create-car-type-form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+    /* Form Group Styles */
+    .create-car-type-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Form Control Styles */
+    .create-car-type-form .form-control {
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+        /* Form Control Focus Styles */
+        .create-car-type-form .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+    /* Button Styles */
+    .create-car-type-form .btn {
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;* Make buttons full width */
+        margin-bottom: 10px; /* Space between buttons */
+    }
+
+    /* Primary Button Styles */
+    .create-car-type-form .btn-primary {
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        color: white;
+    }
+
+        /* Primary Button Hover Styles */
+        .create-car-type-form .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    /* Secondary Button Styles */
+    .create-car-type-form .btn-secondary {
+        background-color: #6c757d;
+        border: 1px solid #6c757d;
+        color: white;
+    }
+
+        /* Secondary Button Hover Styles */
+        .create-car-type-form .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }

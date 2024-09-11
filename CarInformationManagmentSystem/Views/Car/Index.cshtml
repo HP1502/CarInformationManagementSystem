@@ -1,0 +1,119 @@
+﻿@using System.Security.Claims
+@model IEnumerable<CarInformationManagmentSystem.Models.Entities.Car>
+
+
+@{
+    ViewData["Title"] = "Car List";
+    // Ensure ViewBag values are not null and cast them to the appropriate types.
+    var currentModel = ViewBag.CurrentModel as string ?? string.Empty;
+    var currentManufacturerId = ViewBag.CurrentManufacturerId as int?;
+    var currentTypeId = ViewBag.CurrentTypeId as int?;
+    var currentTransmissionId = ViewBag.CurrentTransmissionId as int?;
+    var userRole = User.FindFirstValue(ClaimTypes.Role); // Fetch user role
+}
+
+<div class="content-wrapper">
+    <!-- Filtering Form -->
+    <div class="filter-form">
+        <form method="get" asp-action="Index" class="filter-form-horizontal">
+            <input type="text" id="model" name="model" value="@currentModel" placeholder="Model" class="form-control" />
+            <select id="manufacturerId" name="manufacturerId" class="form-control">
+                <option value="">-- Select Manufacturer --</option>
+                @foreach (var manufacturer in ViewBag.Manufacturers as IEnumerable<CarInformationManagmentSystem.Models.Entities.Manufacturer>)
+                {
+                    <option value="@manufacturer.Id">
+                        @manufacturer.Name
+                    </option>
+                }
+            </select>
+            <select id="typeId" name="typeId" class="form-control">
+                <option value="">-- Select Type --</option>
+                @foreach (var type in ViewBag.CarTypes as IEnumerable<CarInformationManagmentSystem.Models.Entities.CarType>)
+                {
+                    <option value="@type.Id" >
+                        @type.Type
+                    </option>
+                }
+            </select>
+            <select id="transmissionId" name="transmissionId" class="form-control">
+                <option value="">-- Select Transmission --</option>
+                @foreach (var transmission in ViewBag.Transmissions as IEnumerable<CarInformationManagmentSystem.Models.Entities.CarTransmissionType>)
+                {
+                    <option value="@transmission.Id" >
+                        @transmission.Name
+                    </option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+
+    <!-- Table wrapper -->
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Manufacturer</th>
+                    <th>Type</th>
+                    <th>Transmission</th>
+                    <th>Engine</th>
+                    <th>BHP</th>
+                    <th>Mileage</th>
+                    <th>Seat</th>
+                    <th>AirBag Details</th>
+                    <th>Boot Space</th>
+                    <th>Price</th>
+                    @if (User.Identity.IsAuthenticated && userRole == "Admin")
+                    {
+                        <th>Edit</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var car in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@car.Model</td>
+                            <td class="text-center">@car.Manufacturer.Name</td>
+                            <td class="text-center">@car.Type.Type</td>
+                            <td class="text-center">@car.Transmission.Name</td>
+                            <td class="text-center">@car.Engine</td>
+                            <td class="text-center">@car.BHP</td>
+                            <td class="text-center">@car.Mileage</td>
+                            <td class="text-center">@car.Seat</td>
+                            <td class="text-center">@car.AirBagDetails</td>
+                            <td class="text-center">@car.BootSpace</td>
+                            <td class="text-center">@car.Price.ToString("C")</td>
+                            @if (User.Identity.IsAuthenticated&& userRole == "Admin")
+                            {
+                                <td class="text-center">
+                                    <a asp-action="Settings" asp-controller="Car" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" class="text-center">No cars available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Buttons Wrapper -->
+    @if (User.Identity.IsAuthenticated && userRole == "Admin")
+    {
+        <div class="button-wrapper">
+            <a href="@Url.Action("Create", "Car")" class="btn btn-success">Add Car</a>
+            <a href="@Url.Action("Create", "CarType")" class="btn btn-success">Add Car Type</a>
+            <a href="@Url.Action("Create", "CarTransmissionType")" class="btn btn-success">Add Car Transmission</a>
+            <a href="@Url.Action("Create", "Manufacturer")" class="btn btn-success">Add Manufacturer</a>
+        </div>
+    }
+</div>

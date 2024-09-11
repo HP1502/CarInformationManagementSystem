@@ -1,0 +1,95 @@
+﻿@model CarInformationManagmentSystem.Models.Entities.Car
+
+@{
+    ViewData["Title"] = "Edit Car";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/layout.css" />
+}
+
+<div class="edit-car-container">
+    <h2>Edit Car</h2>
+
+    <form asp-action="Update" method="post" class="edit-car-form">
+        <input type="hidden" asp-for="Id" /> <!-- Hidden field for car ID -->
+
+        <div class="form-group">
+            <input asp-for="Model" class="form-control" placeholder="Model" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <select asp-for="ManufacturerId" class="form-control">
+                <option value="">-- Select Manufacturer --</option>
+                @foreach (var manufacturer in ViewBag.Manufacturers as IEnumerable<CarInformationManagmentSystem.Models.Entities.Manufacturer>)
+                {
+                    <option value="@manufacturer.Id">@manufacturer.Name</option>
+                }
+            </select>
+            <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <select asp-for="TypeId" class="form-control">
+                <option value="">-- Select Car Type --</option>
+                @foreach (var type in ViewBag.CarTypes as IEnumerable<CarInformationManagmentSystem.Models.Entities.CarType>)
+                {
+                    <option value="@type.Id" >@type.Type</option>
+                }
+            </select>
+            <span asp-validation-for="TypeId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Engine" class="form-control" placeholder="Engine" />
+            <span asp-validation-for="Engine" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="BHP" class="form-control" placeholder="BHP" />
+            <span asp-validation-for="BHP" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <select asp-for="TransmissionId" class="form-control">
+                <option value="">-- Select Transmission --</option>
+                @foreach (var transmission in ViewBag.Transmissions as IEnumerable<CarInformationManagmentSystem.Models.Entities.CarTransmissionType>)
+                {
+                    <option value="@transmission.Id">@transmission.Name</option>
+                }
+            </select>
+            <span asp-validation-for="TransmissionId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Mileage" class="form-control" placeholder="Mileage" />
+            <span asp-validation-for="Mileage" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Seat" class="form-control" placeholder="Seat" />
+            <span asp-validation-for="Seat" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="AirBagDetails" class="form-control" placeholder="AirBag Details" />
+            <span asp-validation-for="AirBagDetails" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="BootSpace" class="form-control" placeholder="Boot Space" />
+            <span asp-validation-for="BootSpace" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Price" class="form-control" placeholder="Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="@Url.Action("Index", "Car")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>

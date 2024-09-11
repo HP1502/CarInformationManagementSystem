@@ -1,0 +1,21 @@
+﻿@model CarInformationManagmentSystem.Models.Entities.CarType
+
+@{
+    ViewData["Title"] = "Create Car Type";
+}
+
+<div class="create-car-type-container">
+    <h2>Create Car Type</h2>
+
+    <form asp-action="Create" class="create-car-type-form">
+        <div class="form-group">
+            <input asp-for="Type" class="form-control" placeholder="Car Type" />
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="@Url.Action("Index", "Car")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
