@@ -78,7 +78,7 @@
                             @if (User.Identity.IsAuthenticated&& userRole == "Admin")
                             {
                                 <td class="text-center">
-                                    <a asp-action="Settings" asp-controller="Car" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
+                                    <a asp-action="Edit" asp-controller="Car" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td class="text-center">
                                     <form asp-action="Delete" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this car?');">
